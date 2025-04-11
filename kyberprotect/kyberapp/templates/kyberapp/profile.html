@@ -1,0 +1,35 @@
+{% extends "kyberapp/base.html" %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+    <h2>Профиль пользователя</h2>
+    <p>Имя: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+
+    <h3>Прогресс достижений:</h3>
+    <div style="background-color: #eee; border-radius: 8px; overflow: hidden; width: 100%; max-width: 400px; margin-bottom: 20px;">
+        <div style="background-color: #4caf50; width: {{ progress_percent }}%; height: 24px; color: white; text-align: center; line-height: 24px;">
+            {{ progress_percent }}%
+        </div>
+    </div>
+
+    <h3>Достижения:</h3>
+    <ul>
+        {% for achievement in user_achievements %}
+            <li>{{ achievement.achievement.title }} - Получено {{ achievement.earned_at }}</li>
+        {% empty %}
+            <li>Пока нет достижений. Всё впереди! 🚀</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Задачи:</h3>
+    <ul>
+        {% for task, completed in tasks_with_status %}
+            <li style="{% if completed %}color: gray;{% endif %}">
+                {{ task.lesson.title }} — {{ task.question }}
+                {% if completed %}✔️{% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

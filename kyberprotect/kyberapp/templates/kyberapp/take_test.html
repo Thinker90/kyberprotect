@@ -1,0 +1,20 @@
+{% extends "kyberapp/base.html" %}
+
+{% block content %}
+    <h2>{{ test.title }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+            <div class="question">
+                <h3>{{ question.question_text }}</h3>
+                {% for answer in question.answers.all %}
+                    <label>
+                        <input type="checkbox" name="question_{{ question.id }}" value="{{ answer.id }}">
+                        {{ answer.answer_text }}
+                    </label><br>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit">Submit Test</button>
+    </form>
+{% endblock %}

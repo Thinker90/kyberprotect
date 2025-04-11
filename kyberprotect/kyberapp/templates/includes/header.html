@@ -1,0 +1,21 @@
+<header>
+    <nav>
+        <div class="logo">
+            <a href="{% url 'home' %}">🛡 КиберГигиена</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'lessons' %}">Уроки</a></li>
+            <li><a href="{% url 'achievements' %}">Достижения</a></li>
+            <li><a href="{% url 'profile' %}">Профиль</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Выход</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Вход</a></li>
+                <li><a href="{% url 'register' %}">Регистрация</a></li>
+            {% endif %}
+            {% if user.is_staff %}
+                <li><a href="{% url 'admin_faq' %}">FAQ (админ)</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

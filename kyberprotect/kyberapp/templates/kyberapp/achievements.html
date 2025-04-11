@@ -1,0 +1,12 @@
+{% extends "kyberapp/base.html" %}
+
+{% block title %}Достижения{% endblock %}
+
+{% block content %}
+    <h2>Ваши достижения</h2>
+    <ul>
+        {% for user_achievement in user_achievements %}
+            <li>{{ user_achievement.achievement.title }} - Получено {{ user_achievement.earned_at }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

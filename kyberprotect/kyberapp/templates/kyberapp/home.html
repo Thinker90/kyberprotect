@@ -1,0 +1,32 @@
+{% extends "kyberapp/base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<h2>Добро пожаловать!</h2>
+<p>Этот сайт поможет тебе стать настоящим мастером кибергигиены!</p>
+
+<!-- Новостной блок -->
+<h3>Новости</h3>
+<div class="news-block">
+    {% for news_item in page_obj %}
+    <h3>{{ news_item.title }}</h3>
+    <p>{{ news_item.content|slice:":120" }}{% if news_item.content|length > 120 %}...{% endif %}</p>
+    {% endfor %}
+
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
+
+</div>
+{% endblock %}

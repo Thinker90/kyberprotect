@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}КиберГигиена{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+{% include "includes/header.html" %}
+<main>
+    {% block content %}{% endblock %}
+</main>
+{% include "includes/footer.html" %}
+
+{% include "includes/messages.html" %}
+{% block scripts %}{% endblock %}
+</body>
+</html>

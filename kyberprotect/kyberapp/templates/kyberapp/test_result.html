@@ -1,0 +1,10 @@
+{% extends "kyberapp/base.html" %}
+
+{% block content %}
+    <h2>Test Result: {{ test_result.test.title }}</h2>
+    <p>Your score: {{ score }}</p>
+    {% if test_result.achieved_achievement %}
+        <p>Achievement Unlocked: {{ test_result.achieved_achievement.title }}</p>
+        <img src="{{ test_result.achieved_achievement.icon.url }}" alt="{{ test_result.achieved_achievement.title }}">
+    {% endif %}
+{% endblock %}
