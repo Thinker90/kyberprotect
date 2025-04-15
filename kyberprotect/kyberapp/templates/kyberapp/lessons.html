@@ -6,23 +6,31 @@
 <h2>Уроки</h2>
 <ul>
     {% for lesson in page_obj %}
-    <h3>{{ lesson.title }}</h3>
-    <p>{{ lesson.description|slice:":120" }}{% if lesson.description|length > 120 %}...{% endif %}</p>
+        <li>
+            <h3>{{ lesson.title }}</h3>
+            <p>
+                {{ lesson.description|slice:":120" }}{% if lesson.description|length > 120 %}...{% endif %}
+                <a href="{% url 'lesson_detail' lesson.id %}">Читать далее</a>
+            </p>
+        </li>
+    {% empty %}
+        <li>Пока уроков нет</li>
     {% endfor %}
+</ul>
 
-    <div class="pagination">
+<div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; Первая</a>
             <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
         {% endif %}
 
+        <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+
         {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
             <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
         {% endif %}
     </span>
-    </div>
-
-</ul>
+</div>
 {% endblock %}
