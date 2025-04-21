@@ -13,10 +13,15 @@ from .models import (Lesson, Achievement, UserAchievement, Task,
 
 def home(request):
     news_list = News.objects.all()  # Получаем все новости
-    paginator = Paginator(news_list, 5)  # Пагинируем, 5 новостей на странице
+    paginator = Paginator(news_list, 6)  # Пагинируем, 5 новостей на странице
     page_number = request.GET.get('page')  # Получаем номер страницы из GET-параметра
     page_obj = paginator.get_page(page_number)  # Получаем объект страницы
     return render(request, "kyberapp/home.html", {"page_obj": page_obj})
+
+
+def news_detail(request, pk):
+    news_item = get_object_or_404(News, pk=pk)
+    return render(request, 'kyberapp/news_detail.html', {'news_item': news_item})
 
 
 def lessons(request):

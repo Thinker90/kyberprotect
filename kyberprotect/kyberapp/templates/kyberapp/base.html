@@ -3,21 +3,48 @@
 {% load static %}
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>{% block title %}КиберГигиена{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block meta %}{% endblock %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block meta %}
+    <meta name="description" content="" />
+    <meta name="author" content="http://webthemez.com" />
+    {% endblock %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/fancybox/jquery.fancybox.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jcarousel.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet" />
+    <link href="{% static 'js/owl-carousel/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 </head>
-<body>
 
+<body>
+<div id="wrapper">
 {% include "includes/header.html" %}
-<main>
-    {% block content %}{% endblock %}
+
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="pageTitle">{% block page_name %}КиберГигиена{% endblock %}</h2>
+			</div>
+		</div>
+	</div>
+</section>
+
+<main class="mx-3">
+    <section id="content" class="py-5 mb-5">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </section>
 </main>
+
 {% include "includes/footer.html" %}
 
 {% include "includes/messages.html" %}
 {% block scripts %}{% endblock %}
+</div>
 </body>
 </html>

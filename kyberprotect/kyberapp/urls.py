@@ -16,6 +16,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('admin-faq/', views.admin_faq, name='admin_faq'),
     path('test/<int:test_id>/', views.take_test, name='test_detail'),
+    path('news/<int:pk>/', views.news_detail, name='news_detail'),
 ]
 
 if settings.DEBUG:

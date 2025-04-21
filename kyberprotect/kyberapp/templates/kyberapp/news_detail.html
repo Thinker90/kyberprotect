@@ -1,0 +1,14 @@
+{% extends "kyberapp/base.html" %}
+
+{% block title %}{{ news_item.title }}{% endblock %}
+
+{% block content %}
+<div class="container content">
+    <h2>{{ news_item.title }}</h2>
+    {% if news_item.image %}
+        <img src="{{ news_item.image.url }}" class="img-responsive" alt="{{ news_item.title }}">
+    {% endif %}
+    <p>{{ news_item.content }}</p>
+    <p><small>Создано: {{ news_item.created_at|date:"d.m.Y H:i" }}</small></p>
+</div>
+{% endblock %}

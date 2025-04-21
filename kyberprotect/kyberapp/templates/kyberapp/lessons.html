@@ -2,19 +2,22 @@
 
 {% block title %}Уроки{% endblock %}
 
+{% block page_name %}Уроки{% endblock %}
+
 {% block content %}
-<h2>Уроки</h2>
 <ul>
     {% for lesson in page_obj %}
-        <li>
+        <div class="col-md-4 md-margin-bottom-40">
+            {% if lesson.image %}
+                <img class="img-responsive" src="{{ lesson.image.url }}" alt="{{ lesson.title }}">
+            {% endif %}
             <h3>{{ lesson.title }}</h3>
             <p>
-                {{ lesson.description|slice:":120" }}{% if lesson.description|length > 120 %}...{% endif %}
-                <a href="{% url 'lesson_detail' lesson.id %}">Читать далее</a>
+                {{ lesson.description|slice:":120" }}...
             </p>
-        </li>
-    {% empty %}
-        <li>Пока уроков нет</li>
+            <a href="{% url 'lesson_detail' lesson.id %}" class="btn btn-primary btn-sm">Читать далее</a>
+        </div>
+
     {% endfor %}
 </ul>
 
